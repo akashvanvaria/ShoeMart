@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+
+{% block main %}
+
+<body>
+  <!-- import checkout form  -->
+  {% import "bootstrap/wtf.html" as wtf %}
+<section class="categories" id="categories" style="padding-top: 0;">
+  {{wtf.quick_form(form)}}
+</section>
+  {% endblock %}
+
+
+

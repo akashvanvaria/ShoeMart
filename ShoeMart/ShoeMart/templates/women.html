@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block main %}
+<br>
+<br>
+<br>
+    <div class="jumbotron bg-dark ">
+        <h1 class="display-4 text-light">WOMEN SHOES</h1>
+        <p class="lead text-light">Shoe-Mart is the most convenient women's shoe store, with our simplified shopping and payment methods, your desired items are just a few mouse clicks away.</p>
+        <hr class="my-4 bg-light">
+      </div>    
+     
+<!-- Product catalog -->
+<div class="offset-md-1">
+<h2>Women Shoes</h2>
+</div>
+<hr>
+<br>
+<div class="row offset-md-1">
+    {% for shoe in shoes %}
+<div class="col-md-3 mt-md-4">
+    <div class="card">
+        <img class="card-img-top" src="{{url_for('static', filename='img/'+shoe.image)}}" alt="Card image cap" height="250px">
+        <div class="card-body">
+            <h4 class="card-title">{{shoe.name}}</h4>
+            <p class="card-text">RRP: $ {{shoe.price}}</p>
+            <p>Description: {{shoe.description}}</p>
+            <div class="row">
+                <div class="col">
+                    <a href="{{ url_for('main.order', shoe_id=shoe.id) }}" class="btn btn-dark btn-block">Add to cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+</div>
+<!-- Product catalog -->
+
+<br>
+        {% endblock %}

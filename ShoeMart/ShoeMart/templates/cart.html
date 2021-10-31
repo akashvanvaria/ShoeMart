@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+
+<br>
+{% block main %}  
+	<div class="pb-5">
+	  <div class="container">
+		<div class="row">
+		  <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
+  
+			<!-- Shopping cart table -->
+			<div class="table-responsive">
+			  <table class="table">
+				<thead>
+				  <tr>
+					<th scope="col" class="border-0 bg-light">
+					  <div class="p-2 px-3 text-uppercase">Product</div>
+					</th>
+					<th scope="col" class="border-0 bg-light">
+					  <div class="py-2 text-uppercase">Price</div>
+					</th>
+					<th scope="col" class="border-0 bg-light">
+					  <div class="py-2 text-uppercase">Order ID</div>
+					</th>
+					<th scope="col" class="border-0 bg-light">
+					  <div class="py-2 text-uppercase ml-md-4">Remove</div>
+					</th>
+				  </tr>
+				</thead>
+				<tbody>
+					{% for order in orders.shoes%}
+				  <tr>
+					<th scope="row" class="border-0">
+					  <div class="p-2">
+						<img src="{{url_for('static', filename='img/'+order.image)}}" alt="" width="70" class="img-fluid rounded shadow-sm">
+						<div class="ml-3 d-inline-block align-middle">
+						  <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">{{order.name}}</a></h5>
+						</div>
+					  </div>
+					</th>
+					<td class="border-0 align-middle"><strong>${{order.price}}</strong></td>
+					<td class="border-0 align-middle"><strong>{{order.id}}</strong></td>
+					<td class="border-0 align-middle"><form method="POST" action="{{url_for('main.deleteorderitem')}}" class='basketSec'>
+                                              <input type="hidden" id="id" name="id" value="{{order.id}}">
+                                              <input style='display: inline-block;background-color:#CB444A; border: 0; border-radius: 3px;color: white;width: 120px;height: 45px;margin-left: 30px;text-align: center;line-height: 45px;' type="submit" value="Delete" class="basketBut">
+                                            </form></td>
+				  </tr>
+				  {% endfor %}
+				</tbody>
+			  </table>
+			</div>
+			<!-- End -->
+		  </div>
+		</div>
+  
+		  </div>
+		  <div class="col-lg-6 offset-md-3">
+			<div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Order summary </div>
+			<div class="p-4">
+			  <p class="font-italic mb-4">Shipping and additional costs are calculated based on values you have entered.</p>
+			  <ul class="list-unstyled mb-4">
+				<li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Order Total </strong><strong>{{ "$%.2f"|format(totalprice) }}</strong></li>
+				</li>
+			  </ul><a href="{{ url_for('main.checkout') }}" class="btn btn-dark rounded-pill py-2 btn-block">Procceed to checkout</a>
+			</ul><a href="{{ url_for('main.deleteorder') }}" class="btn btn-danger rounded-pill py-2 btn-block">Empty Cart</a>
+			</div>
+		  </div>
+		</div>
+  
+  
+<!-- <div class="container-fluid mt-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="card">
+					<div class="card-header">
+					   <b> My Cart Detail </b>
+					</div>
+					<div class="card-body">
+						<div class="table-responsive-lg">
+							<table class="table v-set">
+								<thead>
+									<tr>
+										<th scope="col">No</th>
+										<th scope="col">Product</th>
+										<th scope="col">Name</th>
+										<th scope="col">Price</th>
+										<th scope="col">Action</th>
+									</tr>
+								</thead>
+								<tbody> -->
+									<!-- add products to cart -->
+								<!-- {% for order in orders.shoes%}
+								  <tr>
+									  <th scope="row">{{order.id}}</th>
+									  <td>
+										  <img src="{{url_for('static', filename='img/'+order.image)}}" class="box-image-set-2" style="width:120px;" height="160px">
+									  </td>
+									  <td>{{order.name}}</td>
+									  <td>${{order.price}}</td>
+								  
+									  <td>
+										<form method="POST" action="{{url_for('main.deleteorderitem')}}" class='basketSec'>
+										  <input type="hidden" id="id" name="id" value="{{order.id}}">
+										  <input style='display: inline-block;background-color:#CB444A; border: 0; border-radius: 3px;color: white;width: 120px;height: 45px;margin-left: 30px;text-align: center;line-height: 45px;' type="submit" value="Delete" class="basketBut">
+										</form>
+									  </td>
+								  </tr>
+								  <section>
+								{% endfor %}
+								
+								</tbody>
+
+								<tfoot>
+									
+									<tr>
+										
+
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+					</div>
+					<div class="col-md-8 mr-md-5">
+						<h5 class="mt-4" style="text-align: right;">Total Cost = {{ "$%.2f"|format(totalprice) }}</h5>
+					</div>
+					<div class="col-md-12 ml-md-4">
+					  <a href="{{ url_for('main.checkout') }}" style='display: inline-block;background-color:rgb(27, 214, 2); border: 0; border-radius: 3px;color: white;width: 120px;height: 45px;margin-left: 30px;text-align: center;line-height: 45px;'>checkout</a>
+					  <a href="{{ url_for('main.deleteorder') }}" style='display: inline-block;background-color:rgb(50, 201, 5); border: 0; border-radius: 3px;color: white;width: 120px;height: 45px;margin-left: 30px;text-align: center;line-height: 45px;'>empty</a>
+					</div>
+						
+					  <br>
+					  <br>
+				</div>
+			</div>
+		</div>
+	</div>
+</div> -->
+
+{% endblock %}

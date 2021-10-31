@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta name="author" content="Akash Vanvaria">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Shoe-Mart</title>
+    <meta name="description" content="Shoe-Mart">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+<!-- Navigation Bar -->
+
+    <body>
+        <section class="bg-white">
+          <header>
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+                <a href="{{ url_for('main.index') }}" class="navbar-brand"> <img src="{{url_for('static', filename='img/logo.png')}}" height="80px" width="50px">Shoe-Mart</a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+        
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav">
+                          <div class="dropdown show">
+                            <a class="btn btn-dark dropdown-toggle bg-dark btn btn-outline-dark text-white" style="font-size: 20px;" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Men
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                              <a class="dropdown-item" href="{{ url_for('main.sports_men') }}">Sports shoes</a>
+                              <a class="dropdown-item" href="{{ url_for('main.casual_men') }}">Casual shoes</a>
+                            </div>
+                          </div>
+                          <div class="dropdown show">
+                            <a class="btn btn-dark dropdown-toggle bg-dark btn btn-outline-dark text-white" style="font-size: 20px;" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Women
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                              <a class="dropdown-item" href="{{ url_for('main.heels_women') }}">Heels</a>
+                              <a class="dropdown-item" href="{{ url_for('main.sports_women') }}">Sports Shoes</a>
+                            </div>
+                          </div>
+                        <a href="{{ url_for('main.Kids', id='3') }}" class="nav-item nav-link active" style="font-size: 20px;">Kids</a>
+                        </div>
+                    </div>
+                  <div class="col-md-3 mt-md-2 mr-sm-1">
+                    <form class="form-inline" action="{{ url_for('main.search')}}">
+                      <input class="form-control mr-sm-3" type="search" placeholder="Search" aria-label="Search" name="search">
+                      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                  </div>
+                  <svg class="bi bi-person-fill text-white " width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
+                  </svg>
+                    <div class="navbar-nav">
+                        <a href="{{ url_for('main.Account')}}" class="nav-item nav-link mr-md-3" style="font-size: 20px;">Account</a>
+                    </div>
+                    <svg class="bi bi-bucket text-white" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M8 1.5A4.5 4.5 0 003.5 6h-1a5.5 5.5 0 1111 0h-1A4.5 4.5 0 008 1.5z" clip-rule="evenodd"/>
+                      <path fill-rule="evenodd" d="M1.61 5.687A.5.5 0 012 5.5h12a.5.5 0 01.488.608l-1.826 8.217a1.5 1.5 0 01-1.464 1.175H4.802a1.5 1.5 0 01-1.464-1.175L1.512 6.108a.5.5 0 01.098-.42zm1.013.813l1.691 7.608a.5.5 0 00.488.392h6.396a.5.5 0 00.488-.392l1.69-7.608H2.624z" clip-rule="evenodd"/>
+                    </svg>
+                    <div class="navbar-nav">
+                      <a href="{{ url_for('main.order')}}" class="nav-item nav-link" style="font-size: 20px;">Cart</a>
+                  </div>
+            </nav>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-primary" role="alert">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+            </div>
+        {% endif %}
+        {% endwith %} 
+
+        {% block head %}{% endblock %}
+
+    </header>
+
+
+    <!-- main page content goes in container -->
+    <div class="container-fluid">
+        <main>
+            {% block main %}{% endblock %}
+        </main>
+    </div>
+
+     <!-- Footer -->
+<footer class="page-footer font-small dark pt-4">
+
+    <!-- Footer Links -->
+    <div class="container-fluid text-center text-md-left bg-dark">
+  <br>
+      <!-- Grid row -->
+      <div class="row">
+  
+        <!-- Grid column -->
+        <div class="col-5 offset-md-0.5 ">
+  
+          <!-- Content -->
+          <h5 class="text-uppercase text-light" ><i class='fa fa-comment text-white' style='font-size:36px'></i>
+            CONTACT US:</h5>
+            <br>
+          <div class="input-group mb-3 col-md-9">
+            <input type="text" class="form-control" placeholder="Email Address" aria-label="Recipient's username" aria-describedby="basic-addon2">
+          </div>
+          <div class="input-group mb-3 col-md-9">
+            <textarea class="form-control" aria-label="With textarea" placeholder="Enter your message.."></textarea>
+          </div>
+
+  
+        </div>
+        <div class="col-5 mt-md-0 mt-2">
+  
+          <!-- Content -->
+
+          <h5 class="text-uppercase text-light"><i class="fa fa-map text-light"></i>
+            Reach Us At:</h5>
+            <br>
+
+          <p class="text-light" style="font-size: 18px;">Address: Shoe-Mart,SouthCity mall, Spring Hill-4000</p>
+          <p class="text-light">Phone Number: +61 481 345 123</p>
+
+  
+        </div>
+
+        <!-- Grid column -->
+        <div class="col mt-md-0 mt-3">
+  
+          <!-- Links -->
+          <h5 class="text-light text-uppercase"> <i class='fa fa-thumbs-up text-white' style='font-size:36px'></i>
+            Follow Us On:</h5>
+  <br>
+          <ul class="list-unstyled">
+            <li>
+              <i class="fa fa-instagram text-info" aria-hidden="true" style="font-size: 20px;"></i>
+              <a href="../templates/" style="font-size: 18px;">Instagram</a>
+            </li>
+            <li>
+              <i class="fa fa-snapchat text-info" aria-hidden="true" style="font-size: 20px;"></i>
+              <a href="../templates/#!" style="font-size: 18px;">Snapchat</a>
+            </li>
+            <li>
+              <i class="fa fa-facebook-official text-info" style="font-size: 20px;"></i>
+              <a href="../templates/#!" style="font-size: 18px;">Facebook</a>
+            </li>
+            <li>
+              <i class="fa fa-twitter text-info" aria-hidden="true" style="font-size: 20px;"></i>
+              <a href="../templates/#!" style="font-size: 18px;">Twitter</a>
+            </li>
+          </ul>
+  
+        </div>
+        <!-- Grid column -->
+  
+      </div>
+      <!-- Grid row -->
+  
+    </div>
+    <!-- Footer Links -->
+  
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3 bg-dark"><span class="text-light">© 2020 Copyright:</span>
+      <a href="../templates/index.html"> Shoe-Mart.com</a>
+    </div>
+    <!-- Copyright -->
+  
+  </footer>
+  <!-- Footer -->
+  <!-- Footer -->
+
+</section>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+</body>
+</html>

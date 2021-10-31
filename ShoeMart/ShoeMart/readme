@@ -1,0 +1,16 @@
+ShoeMart- an ecommerce store selling shoes for men, women and kids.
+
+Technologies used in this website:
+Front end: HTML, CSS, Boostrap, Jinja2, visual studio code
+Back end: Flask, Python, Flask-WTF, Jinja2, visual studio code
+Database: SQL_Alchemy , Db browser for SQLite
+
+Working of the website:
+Extract zip file. Run “run.py” file in terminal in Visual Studio code.
+Click on the link displayed as the output and explore the website.
+User can search for the products. He can then click the products to add to the cart. 
+It will navigate to the cart where products added are listed and can also delete products which are not needed.
+Cart can also be emptied completely.
+Cart shows all the order details including name and price of the product.
+He can then click on checkout and provide details to send to the agent.
+
